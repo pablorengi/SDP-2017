@@ -1,9 +1,15 @@
 package sml;
 
+/**
+ * This class is the superclass of the classes for machine instructions
+ *
+ * @author Pablo
+ */
+
 public abstract class Instruction {
+
     protected String label;
     protected String opcode;
-
     // Constructor: an instruction with label l and opcode op
     // (op must be an operation of the language)
 
@@ -13,6 +19,14 @@ public abstract class Instruction {
     }
 
     // = the representation "label: opcode" of this Instruction
+
+    public String getLabel(){
+        return this.label;
+    }
+
+    public String getOpcode() {
+        return this.opcode;
+    }
 
     @Override
     public String toString() {

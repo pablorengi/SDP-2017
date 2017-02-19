@@ -81,28 +81,28 @@ public class Machine {
         return this.labels;
     }
 
-    public void setLabels(Labels labels) {
-        this.labels = labels;
-    }
-
     public ArrayList<Instruction> getProg() {
         return this.prog;
-    }
-
-    public void setProg(ArrayList<Instruction> prog) {
-        this.prog = prog;
     }
 
     public Registers getRegisters() {
         return this.registers;
     }
 
-    public void setRegisters(Registers registers) {
-        this.registers = registers;
-    }
-
     public int getPc() {
         return this.pc;
+    }
+
+    public void setLabels(Labels labels) {
+        this.labels = labels;
+    }
+
+    public void setProg(ArrayList<Instruction> prog) {
+        this.prog = prog;
+    }
+
+    public void setRegisters(Registers registers) {
+        this.registers = registers;
     }
 
     public void setPc(int pc) {

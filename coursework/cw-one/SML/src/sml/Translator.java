@@ -5,13 +5,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.lang.reflect.*;
 
 /*
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
  */
 public class Translator {
 
-    private static final String PATH = "/Users/keith/Courses/sdp/SDP-2017/coursework/cw-one/";
+    private static final String PATH = "src/";
     // word + line is the part of the current line that's not yet processed
     // word has no whitespace
     // If word and line are not empty, line begins with whitespace
@@ -19,7 +20,8 @@ public class Translator {
     private Labels labels; // The labels of the program being translated
     private ArrayList<Instruction> program; // The program to be created
     private String fileName; // source file of SML code
-
+    private Class<?> iClass;
+    private Constructor<?> iConstructor;
     public Translator(String fileName) {
         this.fileName = PATH + fileName;
     }
@@ -76,27 +78,73 @@ public class Translator {
         int s1; // Possible operands of the instruction
         int s2;
         int r;
-        int x;
+        String l1;
 
         if (line.equals(""))
             return null;
 
         String ins = scan();
-        switch (ins) {
-            case "add":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new AddInstruction(label, r, s1, s2);
-            case "lin":
-                r = scanInt();
-                s1 = scanInt();
-                return new LinInstruction(label, r, s1);
-        }
-
-        // You will have to write code here for the other instructions.
-
-        return null;
+        try {
+            switch (ins) {
+                case "add":
+                    r = scanInt();
+                    s1 = scanInt();
+                    s2 = scanInt();
+                    iClass = AddInstruction.class;
+                    iConstructor = iClass.getConstructor(String.class, int.class, int.class, int.class);
+                    return (Instruction) iConstructor.newInstance(label, r, s1, s2);
+                case "sub":
+                    r = scanInt();
+                    s1 = scanInt();
+                    s2 = scanInt();
+                    iClass = SubInstruction.class;
+                    iConstructor = iClass.getConstructor(String.class, int.class, int.class, int.class);
+                    return (Instruction) iConstructor.newInstance(label, r, s1, s2);
+                case "mul":
+                    r = scanInt();
+                    s1 = scanInt();
+                    s2 = scanInt();
+                    iClass = MulInstruction.class;
+                    iConstructor = iClass.getConstructor(String.class, int.class, int.class, int.class);
+                    return (Instruction) iConstructor.newInstance(label, r, s1, s2);
+                case "div":
+                    r = scanInt();
+                    s1 = scanInt();
+                    s2 = scanInt();
+                    iClass = DivInstruction.class;
+                    iConstructor = iClass.getConstructor(String.class, int.class, int.class, int.class);
+                    return (Instruction) iConstructor.newInstance(label, r, s1, s2);
+                case "out":
+                    r = scanInt();
+                    iClass = OutInstruction.class;
+                    iConstructor = iClass.getConstructor(String.class, int.class);
+                    return (Instruction) iConstructor.newInstance(label, r);
+                case "lin":
+                    r = scanInt();
+                    s1 = scanInt();
+                    iClass = OutInstruction.class;
+                    iConstructor = iClass.getConstructor(String.class, int.class, int.class);
+                    return (Instruction) iConstructor.newInstance(r, s1);
+                case "bnz":
+                    r = scanInt();
+                    l1 = scan();
+                    iClass = BranchInstruction.class;
+                    iConstructor = iClass.getConstructor(String.class, int.class, String.class);
+                    return (Instruction) iConstructor.newInstance(label, r, l1);
+            }
+        } catch (NoSuchMethodException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }return null;
     }
 
     /*

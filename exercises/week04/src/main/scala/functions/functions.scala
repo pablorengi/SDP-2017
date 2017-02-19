@@ -12,7 +12,7 @@ object Funcs {
     * @param ls : List[A] the list to process
     * @return A list containing all but the first element of ls
     */
-  def tail[A](ls: List[A]): List[A] = 
+  def tail[A](ls: List[A]): List[A] =
     ls match {
         case _ :: tl => tl
         case Nil => throw new IllegalArgumentException
@@ -65,7 +65,7 @@ object Funcs {
 
   // LIST FOLDING
 
-  /*
+  /**
    * foldLeft reduces a list down to a single value by iteratively applying a
    * function over the elements of the list and carrying the cumulative result
    * along.

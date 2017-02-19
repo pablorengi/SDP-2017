@@ -1,5 +1,11 @@
 package sml;
 
+/**
+ * This class ....
+ *
+ * @author someone
+ */
+
 public class LinInstruction extends Instruction {
     private int register;
     private int value;

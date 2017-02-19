@@ -1,5 +1,9 @@
 package basics
 
+import scala.collection.JavaConverters._
+
+import scala.collection.mutable.Map
+
 /**
  * This is a singleton object containing the functions you need
  * to implement. Please make sure to read the documentation associated
@@ -15,7 +19,7 @@ object ScalaBasics {
    * @param b operand b
    * @return the sum
    */
-  def add(a: Int, b: Int): Int = ???
+  def add(a: Int, b: Int): Int = {a + b}
 
   /**
    * Write a function that returns the inclusive Range from start to end.
@@ -26,7 +30,7 @@ object ScalaBasics {
    * @param end the end of the range
    * @return the inclusive Range from start to end
    */
-  def inRange(start: Int, end: Int): Range = ???
+  def inRange(start: Int, end: Int): Range = {start to end}
   
   /**
    * Write a function that returns a Range of odd n odd integers starting at 1.
@@ -36,7 +40,9 @@ object ScalaBasics {
    * @param n the number of odd integers in the range
    * @return a Range of odd integers, excluding the last add integer
    */
-  def oddRange(n: Int): Range = ???
+  def oddRange(n: Int): Range = {
+    (1 to n by 2)
+  }
   
   /**
    * Write a function that returns the minimum integer in the Array r.
@@ -50,7 +56,19 @@ object ScalaBasics {
    * @param r the array of integers
    * @return the minimum integer in the array
    */
-  def minWhile(r: Array[Int]): Int = ???
+  def minWhile(r: Array[Int]): Int = {
+    val i: Iterator[Int] = r.iterator
+    var min = 0
+    if(r.length != 0) { min = i.next()}
+    var next = 0
+    while(i.hasNext) {
+      next = i.next()
+      if(next < min) {
+        min = next
+      }
+    }
+    min
+  }
 
   /**
    * Write a function that returns the minimum integer in the Array r.
@@ -64,7 +82,13 @@ object ScalaBasics {
    * @param r the array of integers
    * @return the minimum integer in the array
    */
-  def minFor(r: Array[Int]): Int = ???
+  def minFor(r: Array[Int]): Int = {
+    var min = r(0)
+    for (i <- r) {
+      min = min.min(i)
+    }
+    min
+  }
 
   /**
    * Write a function called minRecursive that returns the minimum integer in the Array r.
@@ -80,7 +104,12 @@ object ScalaBasics {
    * @param r the array of integers
    * @return the minimum integer in the array
    */
-  def minRecursive(r: Array[Int]): Int = ???
+  def minRecursive(r: Array[Int]): Int = {
+    if(r.length > 0) {
+      return r.min
+    }
+    0
+  }
 
   /**
    * Return the base 36 equivalent of the BitInt b.
@@ -90,7 +119,9 @@ object ScalaBasics {
    * @param b a big integer
    * @return the base 36 equivalent
    */
-  def base36(b: BigInt): String = ???
+  def base36(b: BigInt): String = {
+    b.toString(36)
+  }
 
   /**
    * Splits the String s in half.
@@ -113,7 +144,10 @@ object ScalaBasics {
    * @param s the string to split
    * @return the split string as a tuple
    */
-  def splitInHalf(s: String): (String, String) = ???
+  def splitInHalf(s: String): (String, String) = {
+
+    s.splitAt(s.length/2)
+  }
 
   /**
    * Determines if the given string s is a palindrome.
@@ -136,7 +170,12 @@ object ScalaBasics {
    * @param s the potential palindrome
    * @return true if s is a palindrome; false otherwise
    */
-  def isPalindrome(s: String): Boolean = ???
+  def isPalindrome(s: String): Boolean = {
+    val r = s.toLowerCase()
+    for(c <- r; j <- (s.length - 1) to 0 by -1
+        if( c != r.charAt(j))) yield false
+    true
+  }
 
   /**
    * You don't have to complete this one as we've removed it from the list
@@ -179,6 +218,17 @@ object ScalaBasics {
    * @param lines the lines of a text file
    * @return a map from words to the number of times that word was seen
    */
-  def wordCounter(lines: Array[String]): Map[String, Int] = ???
+  def wordCounter(lines: Array[String]): Map[String, Int] = {
+
+    val wordCount = scala.collection.mutable.HashMap[String, Int]()
+    for (line <- lines) {
+      val words = line.split("\\s+")
+      for (word <- words) {
+        val count = wordCount.getOrElse(word, 0)
+        wordCount(word) = count + 1
+      }
+    }
+    wordCount
+  }
 
 }

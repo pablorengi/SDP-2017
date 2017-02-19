@@ -61,6 +61,6 @@ object ListADT {
 
     xs = List(1,2,3)
     println(xs + " summed is " + List.sum(xs))
-//    println("The identity of " + xs + " is " + List.identity(xs))
+    println("The identity of " + xs + " is " + List.identity(xs))
   }
 }

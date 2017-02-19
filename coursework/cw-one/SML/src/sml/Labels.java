@@ -6,6 +6,7 @@ import java.util.ArrayList;
 //in the order in which they were added to the list.
 
 public class Labels {
+
     private ArrayList<String> labels;
 
     {
@@ -26,13 +27,13 @@ public class Labels {
 
     public int indexOf(String lab) {
 
-        // invariant: lab is not in labels[0..i-1]
-        for (int i = 0; i != labels.size(); i++) {
-            if (lab.equals(labels.get(i))) {
-                return i;
-            }
-        }
-        return -1;
+//        // invariant: lab is not in labels[0..i-1]
+//        for (int i = 0; i != labels.size(); i++) {
+//            if (lab.equals(labels.get(i))) {
+//                return i;
+//            }
+//        }
+        return labels.indexOf(lab);
     }
 
     // representation of this instance, "(label 0, label 1, ..., label (n-1))"
