@@ -1,6 +1,6 @@
 package singleton;
 
-public class SingletonLazyDoubleCheck {
+class SingletonLazyDoubleCheck {
     private volatile static SingletonLazyDoubleCheck sc = null;
 
     private SingletonLazyDoubleCheck() {

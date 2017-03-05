@@ -69,7 +69,7 @@ class Singleton private() {
       tilesToSend += tile
       Singleton.firstInstance.letterList -= tile
 
-      i += 1;
+      i += 1
     }
     // Return the number of letter tiles requested
     tilesToSend

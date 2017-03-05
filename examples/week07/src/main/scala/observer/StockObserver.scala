@@ -10,7 +10,7 @@ class StockObserver(// Will hold reference to the StockGrabber object
   // Store the reference to the stockGrabber object so
   // I can make calls to its methods
   // Assign an observer ID and increment the static counter
-  StockObserver.observerIDTracker += 1;
+  StockObserver.observerIDTracker += 1
   val observerID = StockObserver.observerIDTracker
   
   // Message notifies user of new observer

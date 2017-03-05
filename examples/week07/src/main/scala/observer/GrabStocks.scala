@@ -18,7 +18,7 @@ object GrabStocks extends App {
   stockGrabber.setGOOGPrice(676.40)
 
   // Delete one of the observers
-  stockGrabber.unregister(observer2);
+  stockGrabber.unregister(observer2)
   stockGrabber.setIBMPrice(197.00)
   stockGrabber.setAAPLPrice(677.60)
   stockGrabber.setGOOGPrice(676.40)

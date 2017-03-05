@@ -12,7 +12,7 @@ object TestObserver extends App {
     val observer2: Observer = new SMSUsers(subject, "Tim Ronney [London]")
     observer2.subscribe
 
-    val cObject: Commentary = (subject.asInstanceOf[Commentary])
+    val cObject: Commentary = subject.asInstanceOf[Commentary]
     cObject.setDesc("Welcome to live Soccer match")
     cObject.setDesc("Current score 0-0")
     println()

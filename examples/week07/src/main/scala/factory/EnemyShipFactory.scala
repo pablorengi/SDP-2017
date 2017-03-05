@@ -1,6 +1,6 @@
 package factory
 
-// This is a factory thats only job is creating ships
+// This is a factory who's only job is creating ships
 // By encapsulating ship creation, we only have one
 // place to make modifications
 class EnemyShipFactory {
@@ -9,14 +9,14 @@ class EnemyShipFactory {
   def makeEnemyShip(newShipType: String): EnemyShip = {
     val newShip: EnemyShip = null
     if (newShipType == "U") {
-      return new UFOEnemyShip
+      new UFOEnemyShip
     }
     else if (newShipType == "R") {
-      return new RocketEnemyShip
+      new RocketEnemyShip
     }
     else if (newShipType == "B") {
-      return new BigUFOEnemyShip
+      new BigUFOEnemyShip
     }
-    else return null
+    else null
   }
 }

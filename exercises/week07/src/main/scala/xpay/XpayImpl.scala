@@ -9,7 +9,7 @@ class XpayImpl extends Xpay {
   private var amount: Double = .0
 
   def getCreditCardNo: String = {
-    return creditCardNo
+    creditCardNo
   }
 
   def setCreditCardNo(creditCardNo: String) {
@@ -17,7 +17,7 @@ class XpayImpl extends Xpay {
   }
 
   def getCustomerName: String = {
-    return customerName
+    customerName
   }
 
   def setCustomerName(customerName: String) {
@@ -33,7 +33,7 @@ class XpayImpl extends Xpay {
   }
 
   def getCardExpYear: String = {
-    return cardExpYear
+    cardExpYear
   }
 
   def setCardExpYear(cardExpYear: String) {
@@ -41,7 +41,7 @@ class XpayImpl extends Xpay {
   }
 
   def getCardCVVNo: Short = {
-    return cardCVVNo
+    cardCVVNo
   }
 
   def setCardCVVNo(cardCVVNo: Short) {
@@ -49,7 +49,7 @@ class XpayImpl extends Xpay {
   }
 
   def getAmount: Double = {
-    return amount
+    amount
   }
 
   def setAmount(amount: Double) {
